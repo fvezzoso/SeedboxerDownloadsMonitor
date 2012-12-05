@@ -1,0 +1,15 @@
+{
+  "name": "Seedboxer Downloads Monitor",
+  "icons": {"16":"bittorrent.png", "48":"bittorrent.png", "128":"bittorrent.png"},
+  "version": "1.0",
+  "manifest_version": 2,
+  "description": "Take a look at seedboxer's downloads on your browser",
+  "browser_action": {
+    "default_icon": "bittorrent.png",
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html",
+  "permissions": [
+    "*://*/*"
+  ]
+}

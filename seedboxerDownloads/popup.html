@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<head>
+<link rel="stylesheet" href="css/reset.css" />
+<link rel="stylesheet" href="css/blitzer/jquery-ui-1.9.2.custom.css" />
+<link rel="stylesheet" href="css/popup.css" />
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.9.2.custom.min.js"></script>
+<script type="text/javascript" src="js/popup.js"></script>
+
+</head>
+<body>
+<div class="overlay">
+	<img src="ajax-loader.gif">
+</div>
+<div id="tabs">
+		<ul>
+			<li><a href="#tabs-1">Transfering</a></li>
+			<li><a href="#tabs-2">Downloads</a></li>
+		</ul>
+		
+		<div id="tabs-1">
+			<div id="popup">
+			<span class="title"><b>Currently downloading:</b></span>
+			<br><br>
+			<div>
+				<span id="info"></span>
+				<div id="progressbar"></div>
+				<div id="progress-loader" style="display:none"><img src="ajax-loader.gif"/></div>
+			</div>
+			<br>
+			<span class="title"><b>Queued:</b></span>
+			<ul id="queue">
+				<li style="display:none" id="queue-element" class="queue-element">
+					<div class="queue-name">
+					</div>
+					<span class="close">
+					</span>
+				</li>
+			</ul>
+			<span id="queue-info"></span>
+			</div>
+		</div>
+		<div id="tabs-2" style="display:none">
+			<div style="float:right">
+				<label for="search">Search</labe;>
+				<input type="text" id="search" />
+			</div>
+			<ul id="downloads-list">
+			</ul>
+			<button disabled="true" id="download-btn">Download</button>
+			<span>Selected: <span id="selected-count">0</span></span>
+		</div>
+
+
+</div>
+<div id="msg">
+
+</body>
+</html>

@@ -1,0 +1,141 @@
+html {
+	overflow : hidden;
+}
+body {
+	overflow : hidden;
+	min-width : 310px;
+	max-height : 590px
+}
+#info, #queue-info {
+	color: #555;
+	font-size: 10px;
+	
+}
+#progressbar {
+	height: 22px;
+}
+.title{
+	font-size: 12px;
+}
+
+.overlay {
+	position : absolute;
+	width : 100%;
+	height : 100%;
+	background-color : rgba(255, 255, 255, 0.7);
+	z-index : 1;
+}
+
+.overlay img {
+	margin-left : 40%;
+	margin-top : 80px;
+}
+
+#search {
+	border: 1px solid #D9D9D9;
+	margin-bottom: 5px;
+	-webkit-border-radius: 3px;
+	min-height : 22px;
+	width: 180px;
+}
+#tabs-2 {
+	width: 440px;
+}
+#tabs {
+	max-height: 585px;
+
+}
+#queue li, #downloads-list li {
+	background-color : white;
+	list-style-type : none;
+	display : block;
+	border : 1px solid #D9D9D9;
+	padding : 1px;
+	margin : 1px;
+	margin-bottom : 2px;
+	-webkit-border-radius : 3px;
+	min-height : 22px;
+	cursor : pointer;
+
+	
+}
+#downloads-list {
+max-height: 458px;
+overflow-y: scroll;
+overflow-x: hidden;
+clear : both;
+}
+#downloads-list li.ui-selected {
+	background-color : grey;
+	list-style-type : none;
+	display : block;
+	border : 1px solid #D9D9D9;
+	padding : 1px;
+	margin : 1px;
+	margin-bottom : 2px;
+	-webkit-border-radius : 3px;
+	min-height : 22px;
+}
+#queue li {
+	background-color : whiteSmoke;
+	list-style-type : none;
+	display : block;
+	border : 1px solid #D9D9D9;
+	padding : 1px;
+	margin : 1px;
+	margin-bottom : 2px;
+	-webkit-border-radius : 3px;
+	min-height : 22px;
+}
+
+.tooltip-ok {
+	background : none;
+	background-color : green;
+	color : black;
+}
+
+.tooltip-warning {
+	background : none;
+	background-color : yellow;
+	color : black;
+}
+.tooltip-error {
+	background : none;
+	background-color : #C00;
+	color : black;
+}
+
+#queue .queue-name {
+	font-size : 10px;
+	width : 226px;
+	display : inline-block;
+	margin-left : 2px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	vertical-align: sub;
+}
+#queue .close {
+	display: inline-block;
+	width: 14px;
+	height: 20px;
+	background: no-repeat url(contactarea_sprite_2.gif) -4px 0;
+	opacity: .6;
+	vertical-align: middle;
+	cursor: pointer;
+	float : right;
+}
+#queue {
+	padding : 0px;
+	overflow-y: auto;
+	max-height: 404px;
+}
+
+#downloads-list .ui-selecting {
+        background: #ccc;
+    }
+	
+#progress-loader {
+	float : right;
+}
+	
