@@ -179,14 +179,17 @@ function getQueue(){
 				for(var i=0;i<downloads.length;i++){
 					var downloadName = downloads[i].getElementsByTagName("name")[0].textContent;
 					var queueId = downloads[i].getElementsByTagName("queueId")[0].textContent;
+					var order = downloads[i].getElementsByTagName("order")[0].textContent;
 					var newElement = $("#queue-element").clone();
 					newElement.attr("id","");
 					newElement.find(".queue-name").text(downloadName);
 					newElement.show();
 					newElement.appendTo("#queue");
+					newElement.data("order",order);
 					newElement.data("queueId",queueId);
 				}
-				$( "#queue" ).sortable(/*{ containment: "#queue" }*/);
+				sortQueue("#queue");
+				$( "#queue" ).sortable({ update : updateQueueOrder });
 				//$( "#queue li" ).disableSelection();
 			}
 
@@ -321,4 +324,43 @@ function fileChange(evt){
 			uploadTorrent();
 		}
 	}
+}
+
+function sortQueue(itemsSelector){
+	var items = $(itemsSelector  + " li:not(#queue-element)").get();
+	items.sort(function(a,b){ 
+	  var keyA = $(a).data("order");
+	  var keyB = $(b).data("order");
+
+	  if (keyA < keyB) return -1;
+	  if (keyA > keyB) return 1;
+	  return 0;
+	});
+	var ul = $(itemsSelector);
+	$.each(items, function(i, li){
+	  ul.append(li);
+	});
+}
+
+function updateQueueOrder(){
+	var url = "http://"+localStorage["host"]+":"+localStorage["port"]+"/webservices/downloads/update?username="+localStorage["login"];
+	var items = $("#queue li:not(#queue-element)").get();
+	var queueElements = [];
+	$.each(items,function(i,li){
+		var item = {};
+		item.queueId = $(this).data("queueId");
+		item.order = i+1;
+		queueElements.push(item);
+	});
+	var data = JSON.stringify(queueElements);
+	$.ajax({
+		type: 'POST',
+		url : url,
+		contentType : 'application/json',
+		data : data
+	})
+		.fail(function(){
+			showMessage("There was an error when reordering the queue", "error");}
+		);
+	
 }
