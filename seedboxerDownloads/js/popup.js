@@ -22,6 +22,9 @@ $(document).ready(function(){
 	});
 	getTransfers();
 	getQueue();
+	$("#username").val(localStorage["login"]);
+	$("#file").change(fileChange);
+	$('#upload-form').submit(function(){return false});
 	timer = setTimeout(updateProgress,10000);
 });
 
@@ -63,6 +66,8 @@ function tabChange(event, ui){
 			$("#selected-count").text(0);
 			$( "#download-btn" ).button();
 			clearTimeout(timer);
+			break;
+		case 2:
 			break;
 	}
 }
@@ -261,4 +266,59 @@ function queueDownloadsInServer(){
 		.fail(function(){
 			showMessage("There was an error. Try again later.", "error");}
 		);
+}
+
+
+function uploadTorrent(){
+
+	var url = "http://"+localStorage["host"]+":"+localStorage["port"]+"/webservices/torrents/add";
+    var formData = new FormData($('#upload-form')[0]);
+    $.ajax({
+        url: url,  //server script to process data
+        type: 'POST',
+        xhr: function() {  // custom xhr
+            myXhr = $.ajaxSettings.xhr();
+            if(myXhr.upload){ // check if upload property exists
+                myXhr.upload.addEventListener('progress',progressHandlingFunction, false); // for handling the progress of the upload
+            }
+            return myXhr;
+        },
+        //Ajax events
+        success: function(){
+			showMessage("Torrent uploaded successfully", "ok");
+		},
+        error: function(){
+			showMessage("Error trying to upload torrent.", "error");
+		},
+        // Form data
+        data: formData,
+        //Options to tell JQuery not to process data or worry about content-type
+        cache: false,
+        contentType: false,
+        processData: false
+
+});
+}
+
+function progressHandlingFunction(e){
+    if(e.lengthComputable){
+		$( "#upload-progress-bar" ).progressbar({
+			value: e.loaded * 100 / e.total
+		});
+    }
+}
+
+function fileChange(evt){
+	if($(evt.currentTarget).val() != ""){
+		$("#upload-btn").button({disabled : false});
+		var file = this.files[0];
+		type = file.type;
+		if(type != "application/x-bittorrent"){
+			$(evt.currentTarget).val("");
+			$("#upload-btn").button({disabled : true});
+			showMessage("Incorrect type, select a .torrent file.","warning");
+		}else{
+			uploadTorrent();
+		}
+	}
 }

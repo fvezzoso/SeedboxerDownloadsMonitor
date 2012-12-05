@@ -16,6 +16,7 @@
 		<ul>
 			<li><a href="#tabs-1">Transfering</a></li>
 			<li><a href="#tabs-2">Downloads</a></li>
+			<li><a href="#tabs-3">Torrents</a></li>
 		</ul>
 		
 		<div id="tabs-1">
@@ -49,6 +50,16 @@
 			</ul>
 			<button disabled="true" id="download-btn">Download</button>
 			<span>Selected: <span id="selected-count">0</span></span>
+		</div>
+		<div id="tabs-3">
+			<form id="upload-form" >
+				<label for="torrent-select" style="margin-bottom:3px"><b>Select a torrent file to upload:</b></label>
+				<input type="hidden" id="username" name="username"/>
+				<input type="file" id="file" name="file" style="margin-top: 15px;"/>
+				<!-- Commented out progress bar for upload, the upload is too short to make sense
+				<span id="upload-progress-label">Progress:</span>
+				<div id="upload-progress-bar"></div>-->
+			</form>
 		</div>
 
 
