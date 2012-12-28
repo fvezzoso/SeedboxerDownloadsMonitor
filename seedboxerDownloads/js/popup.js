@@ -185,7 +185,7 @@ function getQueue(){
 					newElement.find(".queue-name").text(downloadName);
 					newElement.show();
 					newElement.appendTo("#queue");
-					newElement.data("order",order);
+					newElement.data("order",parseInt(order));
 					newElement.data("queueId",queueId);
 				}
 				sortQueue("#queue");
